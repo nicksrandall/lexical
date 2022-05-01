@@ -641,6 +641,7 @@ export class LexicalNode {
     if (index === -1) {
       invariant(false, 'Node is not a child of its parent');
     }
+    removeNode(this, false);
     const prevSibling = this.getPreviousSibling();
     const nextSibling = this.getNextSibling();
     if (prevSibling !== null) {
@@ -656,7 +657,6 @@ export class LexicalNode {
       writableParent.__last = newKey;
     }
     writableReplaceWith.__parent = newParent.__key;
-    removeNode(this, false);
     const selection = $getSelection();
     if ($isRangeSelection(selection)) {
       const anchor = selection.anchor;
@@ -743,7 +743,7 @@ export class LexicalNode {
     const writableParent = parent.getWritable();
     const insertKey = writableNodeToInsert.__key;
     writableNodeToInsert.__parent = writableSelf.__parent;
-    const index = nodeToInsert.getIndexWithinParent();
+    const index = this.getIndexWithinParent();
     if (index === -1) {
       invariant(false, 'Node is not a child of its parent');
     }
