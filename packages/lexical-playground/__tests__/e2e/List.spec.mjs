@@ -1250,6 +1250,8 @@ test.describe('Nested List', () => {
         <ul class="PlaygroundEditorTheme__ul">
           <li
             aria-checked="true"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__ltr PlaygroundEditorTheme__listItemChecked"
             dir="ltr"
             value="1">
@@ -1257,6 +1259,8 @@ test.describe('Nested List', () => {
           </li>
           <li
             aria-checked="false"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
             dir="ltr"
             value="2">
@@ -1264,11 +1268,15 @@ test.describe('Nested List', () => {
           </li>
           <li
             aria-checked="false"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__nestedListItem"
             value="3">
             <ul class="PlaygroundEditorTheme__ul">
               <li
                 aria-checked="false"
+                role="checkbox"
+                tabindex="-1"
                 class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
                 dir="ltr"
                 value="1">
@@ -1303,6 +1311,8 @@ test.describe('Nested List', () => {
             <ul class="PlaygroundEditorTheme__ul">
               <li
                 aria-checked="false"
+                role="checkbox"
+                tabindex="-1"
                 class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
                 dir="ltr"
                 value="1">
@@ -1320,6 +1330,8 @@ test.describe('Nested List', () => {
         <ul class="PlaygroundEditorTheme__ul">
           <li
             aria-checked="false"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
             dir="ltr"
             value="1">
@@ -1327,6 +1339,8 @@ test.describe('Nested List', () => {
           </li>
           <li
             aria-checked="false"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
             dir="ltr"
             value="2">
@@ -1334,11 +1348,15 @@ test.describe('Nested List', () => {
           </li>
           <li
             aria-checked="false"
+            role="checkbox"
+            tabindex="-1"
             class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__nestedListItem"
             value="3">
             <ul class="PlaygroundEditorTheme__ul">
               <li
                 aria-checked="false"
+                role="checkbox"
+                tabindex="-1"
                 class="PlaygroundEditorTheme__listItem PlaygroundEditorTheme__listItemUnchecked PlaygroundEditorTheme__ltr"
                 dir="ltr"
                 value="1">

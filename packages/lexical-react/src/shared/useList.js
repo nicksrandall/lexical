@@ -103,11 +103,15 @@ let listenersCount = 0;
 function listenPointerDown() {
   if (listenersCount++ === 0) {
     // $FlowFixMe[speculation-ambiguous]
+    document.addEventListener('click', handleClick);
+    // $FlowFixMe[speculation-ambiguous]
     document.addEventListener('pointerdown', handlePointerDown);
   }
 
   return () => {
     if (--listenersCount === 0) {
+      // $FlowFixMe[speculation-ambiguous]
+      document.removeEventListener('click', handleClick);
       // $FlowFixMe[speculation-ambiguous]
       document.removeEventListener('pointerdown', handlePointerDown);
     }
@@ -125,25 +129,46 @@ function findEditor(target) {
   return null;
 }
 
-function handlePointerDown(event) {
+function handleCheckItemEvent(event: PointerEvent, callback) {
   const target = event.target;
+  if (!(target instanceof HTMLElement)) {
+    return;
+  }
+
   const parentNode = target.parentNode;
+  // $FlowFixMe[prop-missing] internal field
   if (!parentNode || parentNode.__lexicalListType !== 'check') {
     return;
   }
 
   const pageX = event.pageX;
   const rect = target.getBoundingClientRect();
-  if (pageX > rect.left && pageX < rect.left + 20) {
-    const editor = findEditor(target);
+
+  // Actual click within first 20px of <li> or click triggered by
+  // voice over command
+  if ((pageX > rect.left && pageX < rect.left + 20) || !!event.buttons) {
+    callback();
+  }
+}
+
+function handleClick(event) {
+  handleCheckItemEvent(event, () => {
+    const editor = findEditor(event.target);
     if (editor != null) {
       editor.update(() => {
-        const node = $getNearestNodeFromDOMNode(target);
+        const node = $getNearestNodeFromDOMNode(event.target);
         if ($isListItemNode(node)) {
+          event.target.focus();
           node.toggleChecked();
         }
       });
-      event.preventDefault();
     }
-  }
+  });
+}
+
+function handlePointerDown(event) {
+  handleCheckItemEvent(event, () => {
+    // Prevents caret moving when clicking on check mark
+    event.preventDefault();
+  });
 }

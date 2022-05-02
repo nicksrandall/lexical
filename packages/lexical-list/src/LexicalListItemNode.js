@@ -375,6 +375,12 @@ function updateListItemChecked(
 ): void {
   const isCheckList = listNode.getListType() === 'check';
   if (isCheckList) {
+    // From createDOM
+    if (!prevListItemNode) {
+      dom.setAttribute('role', 'checkbox');
+      dom.setAttribute('tabIndex', '-1');
+    }
+
     if (
       !prevListItemNode ||
       listItemNode.__checked !== prevListItemNode.__checked
